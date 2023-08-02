@@ -3,6 +3,7 @@ package co.com.telefonica.ws.ui.controller;
 import co.com.telefonica.ws.services.HguService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,16 @@ public class HguController {
     @Autowired
     public HguController(HguService service) {
         this.service = service;
+    }
+
+    @GetMapping("/tbpm/{pageNumber}/{pageSize}")
+    public ResponseEntity<Object> findCustomTBpmServiceImCpeInfo(@PathVariable int pageSize,
+                                                                 @PathVariable int pageNumber) {
+        var require = service.findCustomTBpmServiceImCpeInfo(pageNumber, pageSize);
+        if (require.getStatusCode().is4xxClientError()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
     }
 
     @GetMapping("/model/{model}")

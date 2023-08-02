@@ -39,6 +39,18 @@ public class HguServiceImpl implements HguService {
     }
 
     @Override
+    public ResponseEntity<Object> findCustomTBpmServiceImCpeInfo(int pageNumber, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        var require = tBpmServiceImCpeInfoRepository.findCustomTBpmServiceImCpeInfo(pageRequest);
+        if (require == null) {
+            log.error("Not Found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        log.info("Found totalPages={} with totalElements={}", require.getTotalPages(), require.getTotalElements());
+        return new ResponseEntity<>(require, HttpStatus.OK);
+    }
+
+    @Override
     public Long findCountModel(String model) {
         return tBpmServiceImCpeInfoRepository.count();
     }
