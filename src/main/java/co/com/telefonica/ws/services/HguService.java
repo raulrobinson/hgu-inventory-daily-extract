@@ -3,7 +3,8 @@ package co.com.telefonica.ws.services;
 import org.springframework.http.ResponseEntity;
 
 public interface HguService {
-    ResponseEntity<Object> findCustomTBPM();
+    ResponseEntity<Object> findCustomTBPM(int pageSize,
+                                          int pageNumber);
 
     // ResponseEntity<Object> findCustomTBPM();
     //

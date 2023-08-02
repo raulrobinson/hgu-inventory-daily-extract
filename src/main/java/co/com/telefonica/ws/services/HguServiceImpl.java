@@ -3,6 +3,7 @@ package co.com.telefonica.ws.services;
 import co.com.telefonica.ws.persistence.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -47,14 +48,16 @@ public class HguServiceImpl implements HguService {
     // }
 
     @Override
-    public ResponseEntity<Object> findCustomTBPM() {
-        var require = tryTestRepository.findCustomTryTest10RowsOnly();
+    public ResponseEntity<Object> findCustomTBPM(int pageSize,
+                                                 int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        var require = tryTestRepository.findCustomTryTest10RowsOnly(pageRequest);
         if (require == null) {
             log.error("Not Found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        log.info("Found total={}", require.size());
-        return new ResponseEntity<>(require, HttpStatus.OK);
+        log.info("Found totalPages={} with totalElements={}", require.getTotalPages(), require.getTotalElements());
+        return new ResponseEntity<>(require.getContent(), HttpStatus.OK);
     }
 
     // @Override
