@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 public class HguServiceImpl implements HguService {
 
     private final TryTestRepository tryTestRepository;
+    private final TryTestTotalRepository tryTestTotalRepository;
 
     @Autowired
-    public HguServiceImpl(TryTestRepository tryTestRepository) {
+    public HguServiceImpl(TryTestRepository tryTestRepository, TryTestTotalRepository tryTestTotalRepository) {
         this.tryTestRepository = tryTestRepository;
+        this.tryTestTotalRepository = tryTestTotalRepository;
     }
 
     @Override
@@ -31,8 +33,8 @@ public class HguServiceImpl implements HguService {
 
     @Override
     public ResponseEntity<Object> findCountModel() {
-        var require = tryTestRepository.countAllByTryTest();
-        if (require == 0) {
+        var require = tryTestTotalRepository.countAllByTryTestTotal();
+        if (require == null) {
             log.error("Not Found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
