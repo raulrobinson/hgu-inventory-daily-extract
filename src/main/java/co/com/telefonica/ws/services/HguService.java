@@ -4,14 +4,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface HguService {
     ResponseEntity<Object> findCustomTBPM(int lotSize);
-
-    // ResponseEntity<Object> findCustomTBPM();
-    //
-    // ResponseEntity<Object> findCustomTBpmServiceImCpeInfo(int pageNumber,
-    //                                                       int pageSize);
-    //
-    // Long findCountModel(String model);
-    //
-    // ResponseEntity<Object> findHguByCustomQuery(int pageSize,
-    //                                            int pageNumber);
+    ResponseEntity<Object> findCountModel();
 }
