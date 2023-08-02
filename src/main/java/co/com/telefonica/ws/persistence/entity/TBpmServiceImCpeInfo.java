@@ -19,67 +19,67 @@ import javax.persistence.Table;
 public class TBpmServiceImCpeInfo {
 
     @Column(name = "CPEID")
-    private String CPEID;
+    private String cpeId;
 
     @Column(name = "EQUIPMENT_TYPE")
-    private String EQUIPMENT_TYPE;
+    private String equipmentType;
 
     @Id
     @Column(name = "SERIALNUMBER")
-    private String SERIALNUMBER;
+    private String serialNumber;
 
     @Column(name = "CASID")
-    private String CASID;
+    private String casId;
 
     @Column(name = "BRAND")
-    private String BRAND;
+    private String brand;
 
     @Column(name = "MODEL")
-    private String MODEL;
+    private String model;
 
     @Column(name = "SAPCODE")
-    private String SAPCODE;
+    private String sapCode;
 
     @Column(name = "TVCARD")
-    private String TVCARD;
+    private String tvCard;
 
     @Column(name = "MANUFACTURER")
-    private String MANUFACTURER;
+    private String manufacturer;
 
     @Column(name = "TV_SETUPBOX_NUMBER")
-    private String TVSETUPBOXNUMBER;
+    private String tvSetupBoxNumber;
 
     @Column(name = "SAP_DISTRIBUTION_CENTER")
-    private String SAPDISTRIBUTIONCENTER;
+    private String sapDistributionCenter;
 
     @Column(name = "VOICE_SERVICE_NUMBER")
-    private String VOICESERVICENUMBER;
+    private String voiceServiceNumber;
 
     @Column(name = "BB_SERVICE_NUMBER")
-    private String BBSERVICENUMBER;
+    private String bbServiceNumber;
 
     @Column(name = "TV_SERVICE_NUMBER")
-    private String TVSERVICENUMBER;
+    private String tvServiceNumber;
 
     @Column(name = "DTH_SERVICE_NUMBER")
-    private String DTHSERVICENUMBER;
+    private String dthServiceNumber;
 
     @Column(name = "VOICE_SUB_ID")
-    private String VOICESUBID;
+    private String voiceSubId;
 
     @Column(name = "BB_SUB_ID")
-    private String BBSUBID;
+    private String bbSubId;
 
     @Column(name = "TV_SUB_ID")
-    private String TVSUBID;
+    private String tvSubId;
 
     @Column(name = "DTH_SUB_ID")
-    private String DTHSUBID;
+    private String dthSubId;
 
     @Column(name = "ACCESSID")
-    private String ACCESSID;
+    private String accessId;
 
     @Column(name = "CUSTOMERID")
-    private String CUSTOMERID;
+    private String customerId;
 
 }

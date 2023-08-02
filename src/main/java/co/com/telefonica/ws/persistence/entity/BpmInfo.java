@@ -18,20 +18,20 @@ import javax.persistence.Table;
 @Table(name = "BPM_INFO")
 public class BpmInfo {
 
-    @Id
-    @Column(name = "serialnumber")
-    private String serialNumber;
-
-    @Column(name = "service_number")
+    @Column(name = "SERVICE_NUMBER")
     private String serviceNumber;
 
-    @Column(name = "accessid")
+    @Id
+    @Column(name = "SERIALNUMBER")
+    private String serialNumber;
+
+    @Column(name = "ACCESSID")
     private String accessId;
 
-    @Column(name = "id_type")
+    @Column(name = "ID_TYPE")
     private String idType;
 
-    @Column(name = "id_number")
+    @Column(name = "ID_NUMBER")
     private String idNumber;
 
 }

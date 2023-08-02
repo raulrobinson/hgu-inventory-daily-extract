@@ -1,14 +1,13 @@
 package co.com.telefonica.ws.ui.controller;
 
 import co.com.telefonica.ws.services.HguService;
+import co.com.telefonica.ws.ui.dto.CustomResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -38,6 +37,12 @@ public class HguController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
+    }
+
+    @GetMapping("/results")
+    public Page<CustomResult> getPaginatedResults(@RequestParam(defaultValue = "0") int page,
+                                                  @RequestParam(defaultValue = "10") int size) {
+        return service.getPaginatedResults(page, size);
     }
 
 }
