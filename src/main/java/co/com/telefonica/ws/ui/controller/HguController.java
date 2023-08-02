@@ -23,28 +23,37 @@ public class HguController {
         this.service = service;
     }
 
-    @GetMapping("/tbpm/{pageNumber}/{pageSize}")
-    public ResponseEntity<Object> findCustomTBpmServiceImCpeInfo(@PathVariable int pageSize,
-                                                                 @PathVariable int pageNumber) {
-        var require = service.findCustomTBpmServiceImCpeInfo(pageNumber, pageSize);
+    @GetMapping("/try-test")
+    public ResponseEntity<Object> findCustomTBPM() {
+        var require = service.findCustomTBPM();
         if (require.getStatusCode().is4xxClientError()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
     }
 
-    @GetMapping("/model/{model}")
-    public Long findCountModel(@PathVariable String model) {
-        return service.findCountModel(model);
-    }
-
-    @GetMapping("/{pageNumber}/{pageSize}")
-    public ResponseEntity<Object> findHguByCustomQuery(@PathVariable int pageSize,
-                                                              @PathVariable int pageNumber) {
-        var require = service.findHguByCustomQuery(pageSize, pageNumber );
-        if (require.getStatusCode().is4xxClientError()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
-    }
+    // @GetMapping("/tbpm/{pageNumber}/{pageSize}")
+    // public ResponseEntity<Object> findCustomTBpmServiceImCpeInfo(@PathVariable int pageSize,
+    //                                                              @PathVariable int pageNumber) {
+    //     var require = service.findCustomTBpmServiceImCpeInfo(pageNumber, pageSize);
+    //     if (require.getStatusCode().is4xxClientError()) {
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }
+    //     return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
+    // }
+    //
+    // @GetMapping("/model/{model}")
+    // public Long findCountModel(@PathVariable String model) {
+    //     return service.findCountModel(model);
+    // }
+    //
+    // @GetMapping("/{pageNumber}/{pageSize}")
+    // public ResponseEntity<Object> findHguByCustomQuery(@PathVariable int pageSize,
+    //                                                           @PathVariable int pageNumber) {
+    //     var require = service.findHguByCustomQuery(pageSize, pageNumber );
+    //     if (require.getStatusCode().is4xxClientError()) {
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }
+    //     return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
+    // }
 }
