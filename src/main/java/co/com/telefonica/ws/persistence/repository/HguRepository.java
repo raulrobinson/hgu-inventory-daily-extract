@@ -10,18 +10,25 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HguRepository extends JpaRepository<BpmInfo, String > {
 
-    @Query(value = "with BPM_INFO as (\n" +
-            "   select /* full(a1) parallel(a1,10) materialize */ a1.*, a2.ACCESSID, a2.CUSTOMERID\n" +
-            "   from som.T_BPM_SERVICEIM_CPE_INFO a1\n" +
-            "   inner join som.t_bpm_serviceim_cpeid a2 on a1.cpeid = a2.cpeid \n" +
-            "   where a1.model IN('3505VW','RTF8115VW','GPT-2741GNAC')\n" +
-            ")\n" +
-            "select d.service_number, a.serialnumber, b.accessid, e.id_type, e.id_number \n" +
-            "from BPM_INFO a\n" +
-            "inner join SOM.SERVICEIM_ACCESSID b on a.accessid = b.accessid and b.status <> '0' and b.cfscode = 'CFS_Broadband'\n" +
-            "inner join DWHODS.INF_CUSTOMER c on b.customerid = c.cust_code\n" +
-            "inner join DWHODS.INF_SUBSCRIBER d on b.subscriberid = d.subs_id and d.prod_code = '3200001'\n" +
-            "inner join DWHODS.INF_PARTY_CERTIFICATE e on c.party_id = e.party_id", nativeQuery = true)
+    @Query(value = "WITH BPM_INFO AS (\n" +
+            "      SELECT a1.CPEID, a1.SERIALNUMBER, a2.ACCESSID, a2.CUSTOMERID \n" +
+            "      FROM SOM.T_BPM_SERVICEIM_CPE_INFO a1 \n" +
+            "            INNER JOIN SOM.T_BPM_SERVICEIM_CPEID a2 \n" +
+            "                  ON a1.CPEID = a2.CPEID \n" +
+            "                  WHERE a1.MODEL IN('3505VW','RTF8115VW','GPT-2741GNAC')) \n" +
+            "SELECT d.SERVICE_NUMBER, a.SERIALNUMBER, b.ACCESSID, e.ID_TYPE, e.ID_NUMBER \n" +
+            "FROM BPM_INFO a \n" +
+            "      INNER JOIN SOM.SERVICEIM_ACCESSID b \n" +
+            "            ON a.ACCESSID = b.ACCESSID \n" +
+            "            AND b.STATUS <> '0' \n" +
+            "            AND b.CFSCODE = 'CFS_Broadband' \n" +
+            "      INNER JOIN DWHODS.INF_CUSTOMER c \n" +
+            "            ON b.CUSTOMERID = c.CUST_CODE \n" +
+            "      INNER JOIN DWHODS.INF_SUBSCRIBER d \n" +
+            "            ON b.SUBSCRIBERID = d.SUBS_ID \n" +
+            "            AND d.PROD_CODE = '3200001' \n" +
+            "      INNER JOIN DWHODS.INF_PARTY_CERTIFICATE e \n" +
+            "            ON c.PARTY_ID = e.PARTY_ID", nativeQuery = true)
     Page<Object> findHguByCustomQuery(Pageable pageable);
 
 }
