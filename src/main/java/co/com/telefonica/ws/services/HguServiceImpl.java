@@ -25,25 +25,15 @@ public class HguServiceImpl implements HguService {
     }
 
     @Override
-    public ResponseEntity<List<BpmInfo>> findHguByCustomQuery(int pageSize,
+    public ResponseEntity<Object> findHguByCustomQuery(int pageSize,
                                                               int pageNumber) {
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        Page<BpmInfo> require = repository.findHguByCustomQuery(pageRequest);
+        Page<Object> require = repository.findHguByCustomQuery(pageRequest);
         if (require == null) {
             log.error("Not Found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        List<BpmInfo> list = new ArrayList<>();
-        for (BpmInfo item : require) {
-            BpmInfo info = new BpmInfo();
-            info.setIdType(item.getIdType());
-            info.setIdNumber(item.getIdNumber());
-            info.setAccessId(item.getAccessId());
-            info.setServiceNumber(item.getServiceNumber());
-            info.setSerialNumber(item.getSerialNumber());
-            list.add(info);
-        }
         log.info("Found totalPages={} with totalElements={}", require.getTotalPages(), require.getTotalElements());
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return new ResponseEntity<>(require, HttpStatus.OK);
     }
 }

@@ -22,6 +22,6 @@ public interface HguRepository extends JpaRepository<BpmInfo, String > {
             "inner join DWHODS.INF_CUSTOMER c on b.customerid = c.cust_code\n" +
             "inner join DWHODS.INF_SUBSCRIBER d on b.subscriberid = d.subs_id and d.prod_code = '3200001'\n" +
             "inner join DWHODS.INF_PARTY_CERTIFICATE e on c.party_id = e.party_id", nativeQuery = true)
-    Page<BpmInfo> findHguByCustomQuery(Pageable pageable);
+    Page<Object> findHguByCustomQuery(Pageable pageable);
 
 }

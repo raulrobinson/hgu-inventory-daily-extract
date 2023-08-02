@@ -6,6 +6,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface HguService {
-    ResponseEntity<List<BpmInfo>> findHguByCustomQuery(int pageSize,
+    ResponseEntity<Object> findHguByCustomQuery(int pageSize,
                                                        int pageNumber);
 }

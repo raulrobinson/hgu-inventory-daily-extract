@@ -28,12 +28,12 @@ public class HguController {
     }
 
     @GetMapping("/{pageNumber}/{pageSize}")
-    public ResponseEntity<List<BpmInfo>> findHguByCustomQuery(@PathVariable int pageSize,
+    public ResponseEntity<Object> findHguByCustomQuery(@PathVariable int pageSize,
                                                               @PathVariable int pageNumber) {
         var require = service.findHguByCustomQuery(pageSize, pageNumber );
         if (require.getStatusCode().is4xxClientError()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(Shield.blindBpmInfo(Objects.requireNonNull(require.getBody())), HttpStatus.OK);
+        return new ResponseEntity<>(require.getBody(), HttpStatus.OK);
     }
 }
