@@ -48,16 +48,14 @@ public class HguServiceImpl implements HguService {
     // }
 
     @Override
-    public ResponseEntity<Object> findCustomTBPM(int pageSize,
-                                                 int pageNumber) {
-        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        var require = tryTestRepository.findCustomTryTest10RowsOnly(pageRequest);
+    public ResponseEntity<Object> findCustomTBPM(int lotSize) {
+        var require = tryTestRepository.findCustomTryTest10RowsOnly(lotSize);
         if (require == null) {
             log.error("Not Found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        log.info("Found totalPages={} with totalElements={}", require.getTotalPages(), require.getTotalElements());
-        return new ResponseEntity<>(require.getContent(), HttpStatus.OK);
+        log.info("Found total={}", require.size());
+        return new ResponseEntity<>(require, HttpStatus.OK);
     }
 
     // @Override

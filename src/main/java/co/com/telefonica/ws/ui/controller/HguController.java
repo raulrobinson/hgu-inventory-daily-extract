@@ -23,10 +23,9 @@ public class HguController {
         this.service = service;
     }
 
-    @GetMapping("/try-test/{pageNumber}/{pageSize}")
-    public ResponseEntity<Object> findCustomTBPM(@PathVariable int pageSize,
-                                                 @PathVariable int pageNumber) {
-        var require = service.findCustomTBPM(pageSize, pageNumber);
+    @GetMapping("/try-test/{lotSize}")
+    public ResponseEntity<Object> findCustomTBPM(@PathVariable int lotSize) {
+        var require = service.findCustomTBPM(lotSize);
         if (require.getStatusCode().is4xxClientError()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
