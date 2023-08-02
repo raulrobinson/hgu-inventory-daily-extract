@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SERVICEIM_ACCESSID", schema = "SOM")
@@ -27,6 +30,7 @@ public class ServiceImAccessId {
     @Column(name = "cfscode")
     private String cfsCode;
 
+    @Id
     @Column(name = "subscriberid")
     private String subscriberId;
 

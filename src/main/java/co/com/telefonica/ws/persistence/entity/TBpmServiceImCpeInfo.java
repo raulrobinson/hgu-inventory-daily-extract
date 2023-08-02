@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "T_BPM_SERVICEIM_CPE_INFO", schema = "SOM")
@@ -21,6 +24,7 @@ public class TBpmServiceImCpeInfo {
     @Column(name = "model")
     private String model;
 
+    @Id
     @Column(name = "serialnumber")
     private String serialNumber;
 

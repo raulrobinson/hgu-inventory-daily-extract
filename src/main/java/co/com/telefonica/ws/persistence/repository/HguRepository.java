@@ -15,8 +15,8 @@ public interface HguRepository extends JpaRepository<BpmInfo, String > {
             "      FROM SOM.T_BPM_SERVICEIM_CPE_INFO a1 \n" +
             "            INNER JOIN SOM.T_BPM_SERVICEIM_CPEID a2 \n" +
             "                  ON a1.CPEID = a2.CPEID \n" +
-            "                  WHERE a1.MODEL IN('3505VW','RTF8115VW','GPT-2741GNAC')) \n" +
-            "SELECT d.SERVICE_NUMBER, a.SERIALNUMBER, b.ACCESSID, e.ID_TYPE, e.ID_NUMBER \n" +
+            "                  WHERE a1.MODEL IN('3505VW','RTF8115VW','GPT-2741GNAC')\n" +
+            ") SELECT d.SERVICE_NUMBER, a.SERIALNUMBER, b.ACCESSID, e.ID_TYPE, e.ID_NUMBER \n" +
             "FROM BPM_INFO a \n" +
             "      INNER JOIN SOM.SERVICEIM_ACCESSID b \n" +
             "            ON a.ACCESSID = b.ACCESSID \n" +
