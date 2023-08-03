@@ -1,31 +1,25 @@
 package co.com.telefonica.ws.persistence.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Getter
-@Setter
+@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "T_BPM_SERVICEIM_CPEID", schema = "SOM")
-public class TBpmServiceImCpeId {
+public class CpeidEntity {
 
     @Id
-    @Column(name = "cpeid")
-    private String cpeId;
+    @Column(name = "CPEID")
+    private String cpeid;
 
     @Column(name = "ACCESSID")
-    private String accessId;
+    private String accessid;
 
     @Column(name = "CUSTOMERID")
-    private String customerId;
+    private String customerid;
 
 }
